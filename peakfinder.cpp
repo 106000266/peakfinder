@@ -14,9 +14,9 @@ int main()
     int count=1;
     int max[50]={0};
     int x[50]={0},y[50]={0};
-    for(i=1;i<n;i++)
+    for(i=1;i<=n;i++)
     {
-        for(j=1;j<n;j++)
+        for(j=1;j<=m;j++)
         {
             if(i==1)
             {
