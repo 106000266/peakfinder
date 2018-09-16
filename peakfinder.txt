@@ -11,20 +11,120 @@ int main()
         for(j=1;j<=m;j++)
             cin>>a[i][j];
     }
-    int max=0,x=0,y=0;
-    for(i=1;i<=n;i++)
+    int count=1;
+    int max[50]={0};
+    int x[50]={0},y[50]={0};
+    for(i=1;i<n;i++)
     {
-        for(j=1;j<=m;j++)
+        for(j=1;j<n;j++)
         {
-            if(max<a[i][j])
+            if(i==1)
             {
-                max=a[i][j];
-                x=j;
-                y=i;
+                if(j==1)
+                {
+                    if((a[i][j]>a[i+1][j]) && (a[i][j]>a[i][j+1]))
+                    {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+                else if(j==m)
+                {
+                    if((a[i][j]>a[i+1][j]) && (a[i][j]>=a[i][j-1]))
+                    {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+                else
+                {
+                    if((a[i][j]>a[i+1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>=a[i][j-1]))
+                     {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+            }
+            else if(i==n)
+            {
+                if(j==1)
+                {
+                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i][j+1]))
+                    {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+                else if(j==m)
+                {
+                    if((a[i][j]>a[i-1][j]) && (a[i][j]>=a[i][j-1]))
+                    {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+                else
+                {
+                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>=a[i][j-1]))
+                     {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+            }
+            else if(i<n && i>1)
+            {
+                 if(j==1)
+                {
+                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>a[i+1][j]))
+                    {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+                else if(j==m)
+                {
+                    if((a[i][j]>a[i-1][j]) && (a[i][j]>=a[i][j-1]) && (a[i][j]>a[i+1][j]))
+                    {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
+                else
+                {
+                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i+1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>=a[i][j-1]))
+                     {
+                        max[count]=a[i][j];
+                        x[count]=j;
+                        y[count]=i;
+                        count++;
+                    }
+                }
             }
         }
     }
-    cout<<"The highest peak's height is "<<max<<endl;
-    cout<<"It's location is at (column) "<<x<<", (row) "<<y<<endl;
+    count--;
+    cout<<"There is(are)"<<count<<"peak(s)"<<endl;
+    for(i=1;i<=count;i++)
+    {
+        cout<<"(One of the)The high peak's height is "<<max[i]<<"."<<endl;
+        cout<<"It's location is (column) "<<x[i]<<",(row) "<<y[i]<<"."<<endl;
+    }
     return 0;
 }
