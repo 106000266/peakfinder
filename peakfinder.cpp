@@ -1,7 +1,9 @@
 #include<iostream>
+#include<time.h>
 using namespace std;
 int main()
 {
+    clock_t timer=clock();
     int a[100][100]={{0}};
     int n,m;
     cin>>n>>m;
@@ -12,119 +14,37 @@ int main()
             cin>>a[i][j];
     }
     int count=1;
-    int max[50]={0};
+    int max=0;
     int x[50]={0},y[50]={0};
     for(i=1;i<=n;i++)
     {
         for(j=1;j<=m;j++)
         {
-            if(i==1)
+            if(max<a[i][j])
             {
-                if(j==1)
-                {
-                    if((a[i][j]>a[i+1][j]) && (a[i][j]>a[i][j+1]))
-                    {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
-                else if(j==m)
-                {
-                    if((a[i][j]>a[i+1][j]) && (a[i][j]>=a[i][j-1]))
-                    {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
-                else
-                {
-                    if((a[i][j]>a[i+1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>=a[i][j-1]))
-                     {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
+                max=a[i][j];
+                x[0]=j;
+                y[0]=i;
             }
-            else if(i==n)
+        }    
+    }
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=m;j++)
+        {
+            if(max==a[i][j])
             {
-                if(j==1)
-                {
-                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i][j+1]))
-                    {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
-                else if(j==m)
-                {
-                    if((a[i][j]>a[i-1][j]) && (a[i][j]>=a[i][j-1]))
-                    {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
-                else
-                {
-                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>=a[i][j-1]))
-                     {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
+                x[count]=j;
+                y[count]=i;
+                count++;
             }
-            else if(i<n && i>1)
-            {
-                 if(j==1)
-                {
-                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>a[i+1][j]))
-                    {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
-                else if(j==m)
-                {
-                    if((a[i][j]>a[i-1][j]) && (a[i][j]>=a[i][j-1]) && (a[i][j]>a[i+1][j]))
-                    {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
-                else
-                {
-                    if((a[i][j]>a[i-1][j]) && (a[i][j]>a[i+1][j]) && (a[i][j]>a[i][j+1]) && (a[i][j]>=a[i][j-1]))
-                     {
-                        max[count]=a[i][j];
-                        x[count]=j;
-                        y[count]=i;
-                        count++;
-                    }
-                }
-            }
-        }
+        }    
     }
     count--;
     cout<<"There is(are)"<<count<<"peak(s)"<<endl;
-    for(i=1;i<=count;i++)
-    {
-        cout<<"(One of the)The high peak's height is "<<max[i]<<"."<<endl;
+    cout<<"The high peaks' height are "<<max<<"."<<endl;
+    for(i=1;i<=count;i++) 
         cout<<"It's location is (column) "<<x[i]<<",(row) "<<y[i]<<"."<<endl;
-    }
+    cout<<"Time taken:"<<(double)(clock()-timer)/CLOCKS_PER_SEC<<endl;
     return 0;
 }
