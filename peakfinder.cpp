@@ -1,7 +1,7 @@
 #include<iostream>
 #include<time.h>
 using namespace std;
-int main()
+int main(int argc,char *argv[])
 {
     int a[100][100]={{0}};
     int n,m;
