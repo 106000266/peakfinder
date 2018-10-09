@@ -3,7 +3,6 @@
 using namespace std;
 int main()
 {
-    clock_t timer=clock();
     int a[100][100]={{0}};
     int n,m;
     cin>>n>>m;
@@ -41,10 +40,8 @@ int main()
         }    
     }
     count--;
-    cout<<"There is(are)"<<count<<"peak(s)"<<endl;
-    cout<<"The high peaks' height are "<<max<<"."<<endl;
+    cout<<count<<endl;
     for(i=1;i<=count;i++) 
-        cout<<"It's location is (column) "<<x[i]<<",(row) "<<y[i]<<"."<<endl;
-    cout<<"Time taken:"<<(double)(clock()-timer)/CLOCKS_PER_SEC<<endl;
+        cout<<x[i]<<" "<<y[i]<<endl;
     return 0;
 }
