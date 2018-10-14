@@ -10,16 +10,21 @@ int main(int argc,char *argv[])
     string str1="test_case\\";
     string str2="\\matrix.data";
     string str3="\\final.peak";
-    string in,out;
+    string ta=".data";
+    string in,out,TA;
     in.append(str1);
     in.append(str);
     in.append(str2);
     out.append(str1);
     out.append(str);
     out.append(str3);
-    ifstream infile;
-    infile.open(in.c_str());
+    TA.append(str1);
+    TA.append(str);
+    TA.append(ta);
+    ifstream infile(in.c_str());
+    //infile.open(TA.c_str());
     ofstream outfile(out.c_str());
+    //ofstream outfile("test_case/TA3_final.peak");
     int n,m;
     infile>>n>>m;
     int i,j;
@@ -58,11 +63,11 @@ int main(int argc,char *argv[])
     if(count==(n*m))
         count=0;
     infile.close();
-    cout<<count<<endl;
+    //cout<<count<<endl;
     outfile<<count<<endl;
     for(i=1;i<=count;i++)
     {
-        cout<<x[i]<<" "<<y[i]<<endl;
+        //cout<<x[i]<<" "<<y[i]<<endl;
         outfile<<x[i]<<" "<<y[i]<<endl;
     }
     outfile.close();
